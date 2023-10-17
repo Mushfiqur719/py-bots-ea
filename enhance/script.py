@@ -247,6 +247,24 @@ def run(playwright: Playwright) -> None:
         page.click("#eas-navbar-collection-link")
         input_element = page.locator("input[type='file']")
         input_element.set_input_files(collection_download_path)
+
+    def get_collection_number(page: Page):
+        # Get the value from collection notification
+        produced_strategies = page.eval_on_selector('#eas-collection-notification', 'element => element.textContent.trim()')
+
+        produced_strategies = int(produced_strategies)  # Convert the result to an integer
+
+        if produced_strategies <= 30:
+            print("No. of strategies produced:", produced_strategies)
+            # Call strategyOne() here if needed
+        elif 30 < produced_strategies <= 150:
+            print("No. of strategies produced:", produced_strategies)
+        elif 150 < produced_strategies <= 240:
+            print("No. of strategies produced:", produced_strategies)
+            # Call strategyThree() here if needed
+
+
+
 #########################################
 
     def update_sharpe_ratio(page: Page, current_sr_threshold):
@@ -329,7 +347,7 @@ def run(playwright: Playwright) -> None:
                 print("Increasing sharpe ratio.....")
                 # Change sharp ratio
                 currentSRthreshold = currentSRthreshold + SRincrement
-                update_sharp_ratio(currentSRthreshold)
+                update_sharpe_ratio(currentSRthreshold)
                 analysisResults = analyze_backtest_results3(page, NPthreshold, maxDrawdownThreshold, SRthreshold, PFthreshold)
                 print(analysisResults)
 
@@ -371,14 +389,14 @@ def run(playwright: Playwright) -> None:
             strategies = get_strategies()
             while strategies < 90:
                 currentSRthreshold = currentSRthreshold + SRincrement
-                update_sharp_ratio(currentSRthreshold)
+                update_sharpe_ratio(currentSRthreshold)
                 strategies = get_strategies()
 
             download_files()
             clear_collection()
             clear_portfolio()
             upload_collection()
-            change_sharp_ratio_acceptance_criteria(currentSRthreshold)
+            change_sharpe_ratio_acceptance_criteria(currentSRthreshold)
             RunOrStopReactor()
 
 
