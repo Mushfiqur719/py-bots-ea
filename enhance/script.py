@@ -31,7 +31,7 @@ runTime = "720"
 # <----------------Data Horizon------------------->
 maxDataBars = "200000"
 startDate = "2018-09-14"
-#
+# <------------------------------------------>
 collectionCapacity = "300"
 accMinNetProfit = "250"
 minCountOfTrade = "50"
@@ -42,6 +42,16 @@ minProfitFactor = "1.01"
 # ViewPort size setup
 vpWidth = 550
 vpHeight = 250
+
+#<-------------------Files to change for enhancement-------------------->
+PFthreshold = 2
+NPthreshold = 30000
+maxDrawdownThreshold = 10
+SRthreshold = 0.1
+#================>
+collection = "Strategy Collection 300 EURNZD H1 FXView-Demo; .json"
+Path = ""
+downloadFolderPath = ""
 # <-----------------Change the required setups here----------------->
 
 
